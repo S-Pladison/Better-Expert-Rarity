@@ -35,7 +35,7 @@ namespace BetterExpertRarity
 
             Effect effect = Effect.Value;
             effect.Parameters["time"].SetValue(Main.GlobalTimeWrappedHourly);
-            effect.Parameters["scale"].SetValue(Main.screenWidth / 1920f * 3f);
+            effect.Parameters["scale"].SetValue(Main.screenWidth / 1920f * 3.5f);
 
             ChatManager.DrawColorCodedStringShadow(spriteBatch, FontAssets.MouseText.Value, this.TextToSnippets(), pos, new Color(0, 0, 0, color.A), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
 
