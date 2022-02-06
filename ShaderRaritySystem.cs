@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -18,7 +17,7 @@ namespace BetterExpertRarity
 
         public RenderTarget2D Target { get; private set; }
         public Asset<Effect> Effect { get; private set; }
-        public bool CanDraw { get => Text != String.Empty; }
+        public bool CanDraw { get; set; }
         public string Text { get; set; }
 
         // ...
@@ -46,6 +45,8 @@ namespace BetterExpertRarity
 
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.SamplerStateForCursor, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.UIScaleMatrix);
+
+            CanDraw = false;
         }
 
         public void DrawTarget(GraphicsDevice device, SpriteBatch spriteBatch)
@@ -61,7 +62,7 @@ namespace BetterExpertRarity
             ChatManager.DrawColorCodedString(spriteBatch, FontAssets.MouseText.Value, this.TextToSnippets(), Vector2.Zero, Color.White, 0f, Vector2.Zero, Vector2.One, out _, -1f, false);
             spriteBatch.End();
 
-            device.SetRenderTarget(null);
+            device.SetRenderTargets(null);
         }
 
         public TextSnippet[] TextToSnippets()
@@ -71,7 +72,7 @@ namespace BetterExpertRarity
             return snippets;
         }
 
-        public override void UpdateUI(GameTime gameTime)
+        public void Update()
         {
             Text = string.Empty;
 
@@ -88,7 +89,7 @@ namespace BetterExpertRarity
                 if (nameLine == null) return;
 
                 Text = nameLine.text;
-                return;
+                CanDraw = true;
             }
         }
 
