@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BetterExpertRarity
@@ -11,12 +12,16 @@ namespace BetterExpertRarity
         {
             On.Terraria.Main.DrawPendingMouseText += On_Main_DrawPendingMouseText;
             On.Terraria.Main.SetDisplayMode += On_Main_SetDisplayMode;
+
+            On.Terraria.Item.Prefix += On_Item_Prefix;
         }
 
         public override void Unload()
         {
             On.Terraria.Main.DrawPendingMouseText -= On_Main_DrawPendingMouseText;
             On.Terraria.Main.SetDisplayMode -= On_Main_SetDisplayMode;
+
+            On.Terraria.Item.Prefix -= On_Item_Prefix;
         }
 
         private static void On_Main_DrawPendingMouseText(On.Terraria.Main.orig_DrawPendingMouseText orig)
@@ -50,6 +55,19 @@ namespace BetterExpertRarity
             }
 
             ShaderRaritySystem.Instance.RecreateRenderTarget(Main.screenWidth, Main.screenHeight);
+        }
+
+        private static bool On_Item_Prefix(On.Terraria.Item.orig_Prefix orig, Item item, int pre)
+        {
+            bool isExpertItem = item.rare == ItemRarityID.Expert || item.expert;
+            bool flag = orig(item, pre);
+
+            if (flag && isExpertItem)
+            {
+                item.rare = ItemRarityID.Expert;
+            }
+
+            return flag;
         }
     }
 }
