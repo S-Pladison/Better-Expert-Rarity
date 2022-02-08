@@ -1,5 +1,5 @@
 displayName = Better Expert Rarity
 author = S-Pladison
-version = 1.0.0.2
+version = 1.0.1.1
 hideCode = true
 hideResources = true

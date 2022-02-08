@@ -1,1 +1,8 @@
-«Better Expert Rarity» is a simple mod that changes expert rarity. Now it shimmers instead of just changing color.
+[i]«Better Expert Rarity»[/i] is a simple mod that changes «Expert Mode» and «Master Mode» rarities (Ye, mod name says that only the expert has been changed, but this is not so)
+[hr][/hr]
+[b]Changes:[/b]
+[list]
+[*]The colors of rarities have been changed to gradient (At the moment, only when hovering over item)
+[*]All «Expert/Master Mode» items now have rarity of -12/-13
+[*]After reforging, items remain with expert/master mod rarity
+[/list]
