@@ -17,6 +17,8 @@ namespace BetterExpertRarity.Rarities
         public RenderTarget2D Target { get; private set; }
         public string Text { get; set; } = String.Empty;
 
+        private string _oldText;
+
         public ShaderRarity(Asset<Effect> effect)
         {
             Effect = effect;
@@ -34,6 +36,9 @@ namespace BetterExpertRarity.Rarities
         public void RecreateRenderTarget(int width, int height)
         {
             Target = new(Main.graphics.GraphicsDevice, width, height);
+
+            Text = string.Empty;
+            _oldText = string.Empty;
         }
 
         public void DrawLine(SpriteBatch spriteBatch, Vector2 pos)
@@ -54,7 +59,7 @@ namespace BetterExpertRarity.Rarities
 
         public void DrawTarget(GraphicsDevice device, SpriteBatch spriteBatch, Action drawMethod = null)
         {
-            if (Text == string.Empty) return;
+            if (Text == string.Empty || (_oldText != string.Empty && _oldText == Text)) return;
 
             Target ??= new(Main.graphics.GraphicsDevice, Main.screenWidth, Main.screenHeight);
 
@@ -78,6 +83,8 @@ namespace BetterExpertRarity.Rarities
 
             device.SetRenderTargets(null);
             device.PresentationParameters.RenderTargetUsage = renderTargetUsage;
+
+            _oldText = Text;
         }
 
         void ILoadable.Load(Mod mod)
