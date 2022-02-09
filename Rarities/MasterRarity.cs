@@ -24,7 +24,7 @@ namespace BetterExpertRarity.Rarities
             var effect = Effect.Value;
 
             effect.Parameters["time"].SetValue(Main.GlobalTimeWrappedHourly * 0.8f);
-            effect.Parameters["scale"].SetValue(Main.screenWidth / 1920f * 2f);
+            effect.Parameters["scale"].SetValue(Main.screenWidth / 1920f * 5f);
 
             return effect;
         }

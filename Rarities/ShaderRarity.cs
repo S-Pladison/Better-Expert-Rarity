@@ -57,7 +57,7 @@ namespace BetterExpertRarity.Rarities
             Text = string.Empty;
         }
 
-        public void DrawTarget(GraphicsDevice device, SpriteBatch spriteBatch, Action drawMethod = null)
+        public void DrawTarget(GraphicsDevice device, SpriteBatch spriteBatch)
         {
             if (Text == string.Empty || (_oldText != string.Empty && _oldText == Text)) return;
 
@@ -71,14 +71,7 @@ namespace BetterExpertRarity.Rarities
             device.Clear(Color.Transparent);
 
             spriteBatch.Begin();
-            if (drawMethod != null)
-            {
-                drawMethod.Invoke();
-            }
-            else
-            {
-                ChatManager.DrawColorCodedString(spriteBatch, FontAssets.MouseText.Value, ShaderRarity.TextToSnippets(Text), Vector2.Zero, Color.White, 0f, Vector2.Zero, Vector2.One, out _, -1f, false);
-            }
+            ChatManager.DrawColorCodedString(spriteBatch, FontAssets.MouseText.Value, ShaderRarity.TextToSnippets(Text), Vector2.Zero, Color.White, 0f, Vector2.Zero, Vector2.One, out _, -1f, false);
             spriteBatch.End();
 
             device.SetRenderTargets(null);
