@@ -27,6 +27,7 @@ namespace BetterExpertRarity
             On.Terraria.Main.DrawPendingMouseText += On_Main_DrawPendingMouseText;
             On.Terraria.Main.SetDisplayMode += On_Main_SetDisplayMode;
             On.Terraria.Item.Prefix += On_Item_Prefix;
+            On.Terraria.PopupText.Update += On_PopupText_Update;
             IL.Terraria.Main.MouseTextInner += IL_Main_MouseTextInner;
         }
 
@@ -35,6 +36,7 @@ namespace BetterExpertRarity
             On.Terraria.Main.DrawPendingMouseText -= On_Main_DrawPendingMouseText;
             On.Terraria.Main.SetDisplayMode -= On_Main_SetDisplayMode;
             On.Terraria.Item.Prefix -= On_Item_Prefix;
+            On.Terraria.PopupText.Update -= On_PopupText_Update;
             IL.Terraria.Main.MouseTextInner -= IL_Main_MouseTextInner;
         }
 
@@ -125,6 +127,23 @@ namespace BetterExpertRarity
             }
 
             return flag;
+        }
+
+        private static void On_PopupText_Update(On.Terraria.PopupText.orig_Update orig, PopupText self, int whoAmI)
+        {
+            orig(self, whoAmI);
+
+            if (self.rarity == ItemRarityID.Expert)
+            {
+                self.color = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, Main.mouseTextColor);
+            }
+            else if (self.rarity == ItemRarityID.Master || self.master)
+            {
+                Color color = Color.Lerp(new Color(185, 139, 54), new Color(241, 196, 81), (MathF.Sin(Main.GlobalTimeWrappedHourly * 3f) + 1) * 0.5f);
+                color.A = Main.mouseTextColor;
+
+                self.color = color;
+            }
         }
 
         private static void IL_Main_MouseTextInner(ILContext il)

@@ -37,13 +37,17 @@ namespace BetterExpertRarity
         {
             if (line.mod != "Terraria" || line.Name != "ItemName") return true;
 
+            return !ShaderRarity.TryFindRightRarity(item, out _);
+        }
+
+        public override void PostDrawTooltipLine(Item item, DrawableTooltipLine line)
+        {
+            if (line.mod != "Terraria" || line.Name != "ItemName") return;
+
             if (ShaderRarity.TryFindRightRarity(item, out ShaderRarity sr))
             {
                 sr.DrawLine(Main.spriteBatch, new Vector2(line.X, line.Y));
-                return false;
             }
-
-            return true;
         }
     }
 }
