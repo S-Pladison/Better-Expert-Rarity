@@ -2,5 +2,10 @@
   "WorkshopPublishedVersion": 1,
   "ContentType": "Mod",
   "SteamEntryId": 2745251188,
+  "Tags": [
+    "tweaks",
+    "interface",
+    "clientside-only"
+  ],
   "Publicity": 2
 }
