@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fYfi2Ezclh7R4/d0xbOlig7PiwYp0oUA2iLtUd/QWsRr86GiwKUqIROdChMewy3PP+ZbSNlMf75rv5tkPpeBTw==",
+  "dgSpecHash": "n++lF30rzSuZMPvknSaJMDVal9yWdcR1KfjtBPsV3JfFh0RQOc6064SMn1ylM1UoaY6WCH+YLZ3Kn86EEDtgDQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\BetterExpertRarity\\BetterExpertRarity.csproj",
+  "projectFilePath": "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterExpertRarity\\BetterExpertRarity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SPladison\\.nuget\\packages\\tmodloader.codeassist\\0.1.3\\tmodloader.codeassist.0.1.3.nupkg.sha512"
   ],

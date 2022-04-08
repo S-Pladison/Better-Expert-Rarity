@@ -1,28 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\BetterExpertRarity\\BetterExpertRarity.csproj": {}
+    "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterExpertRarity\\BetterExpertRarity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\BetterExpertRarity\\BetterExpertRarity.csproj": {
+    "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterExpertRarity\\BetterExpertRarity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\BetterExpertRarity\\BetterExpertRarity.csproj",
+        "projectUniqueName": "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterExpertRarity\\BetterExpertRarity.csproj",
         "projectName": "BetterExpertRarity",
-        "projectPath": "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\BetterExpertRarity\\BetterExpertRarity.csproj",
+        "projectPath": "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterExpertRarity\\BetterExpertRarity.csproj",
         "packagesPath": "C:\\Users\\SPladison\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\BetterExpertRarity\\obj\\",
+        "outputPath": "C:\\Users\\SPladison\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\BetterExpertRarity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\SPladison\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -67,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
