@@ -24,6 +24,8 @@ namespace BetterExpertRarity.Common
         {
             RenderedText = new();
 
+            if (Main.dedServ) return;
+
             // Чтоб отбросить лишние проблемы, просто обновляем цель рендеринга при изменении окна игры
             On.Terraria.Main.SetDisplayMode += (orig, width, height, fullscreen) =>
             {
@@ -158,8 +160,6 @@ namespace BetterExpertRarity.Common
                 }
             };
 
-            if (Main.dedServ) return;
-
             LoadEffects();
         }
 
@@ -221,10 +221,10 @@ namespace BetterExpertRarity.Common
                 var var5 = -1;
 
                 var tooltips = ItemLoader.ModifyTooltips(Main.HoverItem, ref var1, new string[] { "ItemName" }, ref var2, ref var3, ref var4, ref var5, out _);
-                var nameLine = tooltips.Find(i => i.mod == "Terraria" && i.Name == "ItemName");
+                var nameLine = tooltips.Find(i => i.Mod == "Terraria" && i.Name == "ItemName");
                 if (nameLine == null) return;
 
-                system.RenderedText.Render(nameLine.text);
+                system.RenderedText.Render(nameLine.Text);
             }
 
             var mouseTextCache = BetterExpertRarity.MouseTextCacheInfo?.GetValue(Main.instance);

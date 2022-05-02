@@ -61,12 +61,12 @@ namespace BetterExpertRarity.Common
 
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
         {
-            return line.mod != "Terraria" || line.Name != "ItemName";
+            return line.Mod != "Terraria" || line.Name != "ItemName";
         }
 
         public override void PostDrawTooltipLine(Item item, DrawableTooltipLine line)
         {
-            if (line.mod != "Terraria" || line.Name != "ItemName") return;
+            if (line.Mod != "Terraria" || line.Name != "ItemName") return;
 
             ModContent.GetInstance<ShaderRaritySystem>().DrawExpertLine(Main.spriteBatch, new Vector2(line.X, line.Y));
         }
@@ -89,12 +89,12 @@ namespace BetterExpertRarity.Common
 
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
         {
-            return line.mod != "Terraria" || line.Name != "ItemName";
+            return line.Mod != "Terraria" || line.Name != "ItemName";
         }
 
         public override void PostDrawTooltipLine(Item item, DrawableTooltipLine line)
         {
-            if (line.mod != "Terraria" || line.Name != "ItemName") return;
+            if (line.Mod != "Terraria" || line.Name != "ItemName") return;
 
             ModContent.GetInstance<ShaderRaritySystem>().DrawMasterLine(Main.spriteBatch, new Vector2(line.X, line.Y));
         }
