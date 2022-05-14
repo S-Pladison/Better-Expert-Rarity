@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace BetterExpertRarity
 {
+    [Autoload(Side = ModSide.Client)]
     public class BetterExpertRarity : Mod
     {
         public static readonly FieldInfo MouseTextCacheInfo = typeof(Main).GetField("_mouseTextCache", BindingFlags.NonPublic | BindingFlags.Instance);
