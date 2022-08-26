@@ -1,5 +1,7 @@
 «Better Expert Rarity» is a simple mod that changes «Expert Mode» and «Master Mode» rarities (Ye, mod name says that only «Expert Mode» rarity has been changed, but it's not)
 
+[hr][/hr]
+
 Changes:
 • The colors of rarities have been changed to gradient
 • All «Expert/Master Mode» items now have rarity of -12/-13

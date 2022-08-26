@@ -41,32 +41,32 @@ namespace BetterExpertRarity.Common
                     self.color = color;
                 }
             };
+
+            On.Terraria.Item.SetDefaults_int_bool += (orig, self, type, pofig) =>
+            {
+                orig(self, type, pofig);
+
+                if (self.expert)
+                {
+                    self.rare = ItemRarityID.Expert;
+                }
+
+                if (self.master)
+                {
+                    self.rare = ItemRarityID.Master;
+                }
+            };
         }
     }
 
     public class ExpertGlobalItem : GlobalItem
     {
-        public override bool AppliesToEntity(Item item, bool _)
-        {
-            bool flag = false;
-            flag |= item.rare == ItemRarityID.Expert;
-            flag |= item.expert;
-            return flag;
-        }
-
-        public override void SetDefaults(Item item)
-        {
-            item.rare = ItemRarityID.Expert;
-        }
-
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
-        {
-            return line.Mod != "Terraria" || line.Name != "ItemName";
-        }
+            => (item.rare != ItemRarityID.Expert && !item.expert) || line.Mod != "Terraria" || line.Name != "ItemName";
 
         public override void PostDrawTooltipLine(Item item, DrawableTooltipLine line)
         {
-            if (line.Mod != "Terraria" || line.Name != "ItemName") return;
+            if ((item.rare != ItemRarityID.Expert && !item.expert) || line.Mod != "Terraria" || line.Name != "ItemName") return;
 
             ModContent.GetInstance<ShaderRaritySystem>().DrawExpertLine(Main.spriteBatch, new Vector2(line.X, line.Y));
         }
@@ -74,27 +74,12 @@ namespace BetterExpertRarity.Common
 
     public class MasterGlobalItem : GlobalItem
     {
-        public override bool AppliesToEntity(Item item, bool _)
-        {
-            bool flag = false;
-            flag |= item.rare == ItemRarityID.Master;
-            flag |= item.master;
-            return flag;
-        }
-
-        public override void SetDefaults(Item item)
-        {
-            item.rare = ItemRarityID.Master;
-        }
-
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
-        {
-            return line.Mod != "Terraria" || line.Name != "ItemName";
-        }
+            => (item.rare != ItemRarityID.Master && !item.master) || line.Mod != "Terraria" || line.Name != "ItemName";
 
         public override void PostDrawTooltipLine(Item item, DrawableTooltipLine line)
         {
-            if (line.Mod != "Terraria" || line.Name != "ItemName") return;
+            if ((item.rare != ItemRarityID.Master && !item.master) || line.Mod != "Terraria" || line.Name != "ItemName") return;
 
             ModContent.GetInstance<ShaderRaritySystem>().DrawMasterLine(Main.spriteBatch, new Vector2(line.X, line.Y));
         }
