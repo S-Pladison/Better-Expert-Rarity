@@ -123,7 +123,7 @@ namespace BetterExpertRarity.Content.Rarities
 
             var effect = Effect.Value;
             effect.Parameters["time"].SetValue(Main.GlobalTimeWrappedHourly * 0.75f);
-            effect.Parameters["scale"].SetValue(Main.screenWidth / 1920f * 6f);
+            effect.Parameters["scale"].SetValue(Main.graphics.PreferredBackBufferWidth / 1920f * 6f);
         }
     }
 }
