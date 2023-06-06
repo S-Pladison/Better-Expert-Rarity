@@ -47,32 +47,35 @@ namespace BetterExpertRarity.Content.Rarities
 
             ChatManager.DrawColorCodedStringShadow(spriteBatch, FontAssets.MouseText.Value, line.Text.ToSnippets(), position, new Color(0, 0, 0, pulsation), line.Rotation, line.Origin, line.BaseScale, line.MaxWidth, line.Spread);
 
-            spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.SamplerStateForCursor, DepthStencilState.None, RasterizerState.CullCounterClockwise, Effect.Value, Main.UIScaleMatrix);
+            spriteBatch.End(out SpriteBatchData spriteBatchInfo);
+            spriteBatch.Begin(spriteBatchInfo, Effect.Value);
 
             var color = Colors.AlphaDarken(Color.White);
             color.A = 0;
 
-            for (float a = 0f; a < MathHelper.TwoPi; a += MathHelper.PiOver2 + 0.01f)
+            for (int i = 0; i < 5; i++)
             {
-                var coords = position + a.ToRotationVector2() * pulsation * 1.33f;
+                var angle = i / 5.0f * MathHelper.TwoPi;
+                var coords = position + angle.ToRotationVector2() * pulsation * 1.33f;
                 spriteBatch.Draw(renderedLineTexture, coords, null, Color.Black, line.Rotation, line.Origin, line.BaseScale.Y, SpriteEffects.None, 0f);
             }
 
-            for (float a = 0f; a < MathHelper.TwoPi; a += MathHelper.PiOver2 + 0.01f)
+            for (int i = 0; i < 5; i++)
             {
-                var coords = position + a.ToRotationVector2() * pulsation / 2f;
+                var angle = i / 5.0f * MathHelper.TwoPi;
+                var coords = position + angle.ToRotationVector2() * pulsation * 0.5f;
                 spriteBatch.Draw(renderedLineTexture, coords, null, color * 0.3f, line.Rotation, line.Origin, line.BaseScale.Y, SpriteEffects.None, 0f);
             }
 
-            for (float a = 0f; a < MathHelper.TwoPi; a += MathHelper.PiOver4 + 0.01f)
+            for (int i = 0; i < 5; i++)
             {
-                var coords = position + (a + Main.GlobalTimeWrappedHourly).ToRotationVector2() * pulsation * 3f;
+                var angle = i / 5.0f * MathHelper.TwoPi;
+                var coords = position + (angle + Main.GlobalTimeWrappedHourly).ToRotationVector2() * pulsation * 3f;
                 spriteBatch.Draw(renderedLineTexture, coords, null, color * 0.1f, line.Rotation, line.Origin, line.BaseScale.Y, SpriteEffects.None, 0f);
             }
 
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.SamplerStateForCursor, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.UIScaleMatrix);
+            spriteBatch.Begin(spriteBatchInfo);
 
             return false;
         }
@@ -91,21 +94,24 @@ namespace BetterExpertRarity.Content.Rarities
             var color = Colors.AlphaDarken(Color.White);
             color.A = 0;
 
-            for (float a = 0f; a < MathHelper.TwoPi; a += MathHelper.PiOver2 + 0.01f)
+            for (int i = 0; i < 5; i++)
             {
-                var coords = position + a.ToRotationVector2() * pulsation * 1.33f;
+                var angle = i / 5.0f * MathHelper.TwoPi;
+                var coords = position + angle.ToRotationVector2() * pulsation * 1.33f;
                 spriteBatch.Draw(renderedLineTexture, coords, null, Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
 
-            for (float a = 0f; a < MathHelper.TwoPi; a += MathHelper.PiOver2 + 0.01f)
+            for (int i = 0; i < 5; i++)
             {
-                var coords = position + a.ToRotationVector2() * pulsation / 2f;
+                var angle = i / 5.0f * MathHelper.TwoPi;
+                var coords = position + angle.ToRotationVector2() * pulsation * 0.5f;
                 spriteBatch.Draw(renderedLineTexture, coords, null, color * 0.3f, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
 
-            for (float a = 0f; a < MathHelper.TwoPi; a += MathHelper.PiOver4 + 0.01f)
+            for (int i = 0; i < 5; i++)
             {
-                var coords = position + (a + Main.GlobalTimeWrappedHourly).ToRotationVector2() * pulsation * 3f;
+                var angle = i / 5.0f * MathHelper.TwoPi;
+                var coords = position + (angle + Main.GlobalTimeWrappedHourly).ToRotationVector2() * pulsation * 3f;
                 spriteBatch.Draw(renderedLineTexture, coords, null, color * 0.1f, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
 
@@ -122,8 +128,8 @@ namespace BetterExpertRarity.Content.Rarities
             pulsation = Main.mouseTextColor / 255f;
 
             var effect = Effect.Value;
-            effect.Parameters["time"].SetValue(Main.GlobalTimeWrappedHourly * 0.75f);
-            effect.Parameters["scale"].SetValue(Main.graphics.PreferredBackBufferWidth / 1920f * 6f);
+            effect.Parameters["time"].SetValue(Main.GlobalTimeWrappedHourly * 0.25f);
+            effect.Parameters["scale"].SetValue(Main.screenWidth / 1920f * 6f);
         }
     }
 }

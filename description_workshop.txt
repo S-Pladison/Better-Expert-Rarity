@@ -4,5 +4,5 @@
 
 Changes:
 • The colors of rarities have been changed to gradient
-• All «Expert/Master Mode» items now have rarity of -12/-13
+• All «Expert/Master Mode» items now have rarity -12/-13
 • After reforging, items remain with expert/master mode rarity
