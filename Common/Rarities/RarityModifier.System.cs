@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
@@ -43,11 +44,25 @@ namespace BetterExpertRarity.Common.Rarities
 
             On_Main.DrawPendingMouseText += (orig) =>
             {
-                var sb = Main.spriteBatch;
+                ref var item = ref Main.HoverItem;
 
-                sb.End();
-                RedrawTooltipRenderedLine();
-                sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.SamplerStateForCursor, null, null, null, Main.UIScaleMatrix);
+                if (item is not null && item.type > ItemID.None)
+                {
+                    var sb = Main.spriteBatch;
+                    var rarity = item.rare;
+
+                    if (item.expert)
+                        item.rare = ItemRarityID.Expert;
+
+                    if (item.master)
+                        item.rare = ItemRarityID.Master;
+
+                    sb.End();
+                    RedrawTooltipRenderedLine();
+                    sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.SamplerStateForCursor, null, null, null, Main.UIScaleMatrix);
+
+                    item.rare = rarity;
+                }
 
                 orig();
             };
@@ -79,7 +94,7 @@ namespace BetterExpertRarity.Common.Rarities
 
                 c.EmitDelegate((string cursorText, int rarity, int x, int y) =>
                 {
-                    var modifier = Modifiers.FirstOrDefault(x => x.AppliesToRarity(rarity) || x.AppliesToRarity(Main.HoverItem?.rare ?? int.MinValue), null);
+                    var modifier = Modifiers.FirstOrDefault(x => x.AppliesToRarity(rarity), null);
 
                     if (modifier is null) return true;
 
@@ -166,11 +181,7 @@ namespace BetterExpertRarity.Common.Rarities
 
         private void RedrawTooltipRenderedLine()
         {
-            var item = Main.HoverItem;
-
-            if (item is null) return;
-
-            var modifier = Modifiers.FirstOrDefault(x => x.AppliesToRarity(item.rare), null);
+            var modifier = Modifiers.FirstOrDefault(x => x.AppliesToRarity(Main.HoverItem.rare), null);
 
             if (modifier is null) return;
 
