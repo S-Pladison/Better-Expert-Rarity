@@ -7,14 +7,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
+#if DEBUG
 namespace BetterExpertRarity.Content.Rarities
 {
-    [Autoload(false)]
     public class TestRarity : DrawableModRarity
     {
         // [...]
 
-        [Autoload(false)]
         private class TestRarityGlobalItem : GlobalItem
         {
             public override bool AppliesToEntity(Item entity, bool lateInstantiation)
@@ -35,3 +34,4 @@ namespace BetterExpertRarity.Content.Rarities
         }
     }
 }
+#endif
