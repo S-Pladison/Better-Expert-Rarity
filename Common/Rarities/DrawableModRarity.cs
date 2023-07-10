@@ -12,6 +12,7 @@ namespace BetterExpertRarity.Common.Rarities
             // [public properties and fields]
 
             public DrawableModRarity ModRarity { get; init; }
+            public override int RarityType { get => ModRarity.Type; }
 
             // [constructors]
 
@@ -21,9 +22,6 @@ namespace BetterExpertRarity.Common.Rarities
             }
 
             // [public methods]
-
-            public override bool AppliesToRarity(int rarity)
-                => ModRarity.Type == rarity;
 
             public override void Draw(DrawData data)
             {

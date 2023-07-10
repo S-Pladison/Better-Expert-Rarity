@@ -1,8 +1,6 @@
 ﻿using BetterExpertRarity.Common.Rarities;
 using BetterExpertRarity.Utils.Extensions;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -25,10 +23,6 @@ namespace BetterExpertRarity.Content.Rarities
             public override void SetDefaults(Item entity)
                 => entity.rare = ModContent.RarityType<TestRarity>();
         }
-
-        // [public properties and fields]
-
-        public Asset<Effect> Effect { get; private set; }
 
         // [public methods]
 

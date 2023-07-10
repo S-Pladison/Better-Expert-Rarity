@@ -19,9 +19,12 @@ namespace BetterExpertRarity.Common.Rarities
             public float ShadowSpread;
         }
 
+        // [public properties and fields]
+
+        public abstract int RarityType { get; }
+
         // [public methods]
 
-        public abstract bool AppliesToRarity(int rarity);
         public abstract void Draw(DrawData data);
 
         // [protected methods]

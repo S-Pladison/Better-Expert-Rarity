@@ -17,11 +17,9 @@ namespace BetterExpertRarity.Content.Rarities
         // [public properties and fields]
 
         public Asset<Effect> Effect { get; private set; }
+        public override int RarityType { get => ItemRarityID.Master; }
 
         // [public methods]
-
-        public override bool AppliesToRarity(int rarity)
-            => rarity == ItemRarityID.Master;
 
         public override void Load()
         {
