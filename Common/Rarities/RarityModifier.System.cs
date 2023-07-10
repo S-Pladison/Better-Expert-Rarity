@@ -42,10 +42,5 @@ namespace BetterExpertRarity.Common.Rarities
         {
             modifierInstances.Clear();
         }
-
-        public override void PostSetupContent()
-        {
-            Mod.Logger.Info(":| " + modifierInstances.Count);
-        }
     }
 }
