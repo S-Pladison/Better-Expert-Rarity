@@ -15,13 +15,17 @@ sampler textureSampler1 = sampler_state
     AddressV = WRAP;
 };
 
+float2 screenResolution;
+float2 textPosition;
 float time;
-float scale;
+float repetitions;
 
-float4 ShaderRarity(float2 coords : TEXCOORD0, float4 sampleColor : COLOR0) : COLOR0
+float4 ShaderRarity(float4 screenSpace : VPOS, float2 textureCoords : TEXCOORD0, float4 sampleColor : COLOR0) : COLOR0
 {
-    float4 t0 = tex2D(textureSampler0, coords);
-    float4 t1 = tex2D(textureSampler1, coords * scale + float2(time, 0));
+    float2 coords = (screenSpace.xy - textPosition) / screenResolution;
+
+    float4 t0 = tex2D(textureSampler0, textureCoords);
+    float4 t1 = tex2D(textureSampler1, coords * repetitions + float2(time, 0));
 
     t0.rgb *= t1.rgb;
 
@@ -30,8 +34,8 @@ float4 ShaderRarity(float2 coords : TEXCOORD0, float4 sampleColor : COLOR0) : CO
 
 technique Technique1
 {
-    pass ShaderRarity
+    pass ShaderRarityPass
     {
-        PixelShader = compile ps_2_0 ShaderRarity();
+        PixelShader = compile ps_3_0 ShaderRarity();
     }
 }

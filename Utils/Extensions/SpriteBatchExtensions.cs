@@ -43,6 +43,13 @@ namespace BetterExpertRarity.Utils.Extensions
                 spriteBatchData.RasterizerState, effect, spriteBatchData.Matrix
             );
 
+        public static void Begin(this SpriteBatch spriteBatch, SpriteBatchData spriteBatchData, SpriteSortMode sortMode, Effect effect)
+            => spriteBatch.Begin
+            (
+                sortMode, spriteBatchData.BlendState, spriteBatchData.SamplerState, spriteBatchData.DepthStencilState,
+                spriteBatchData.RasterizerState, effect, spriteBatchData.Matrix
+            );
+
         public static void Begin(this SpriteBatch spriteBatch, SpriteBatchData spriteBatchData, SpriteSortMode sortMode, BlendState blendState, Effect effect)
             => spriteBatch.Begin
             (

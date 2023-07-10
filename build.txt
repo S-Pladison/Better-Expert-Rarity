@@ -1,6 +1,6 @@
 displayName = Better Expert Rarity
 author = S-Pladison
-version = 1.0.4.4
+version = 1.0.5.0
 homepage = https://forums.terraria.org/index.php?threads/s-pladisons-mods.67185/
 hideCode = true
 hideResources = true

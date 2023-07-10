@@ -12,24 +12,36 @@ using Terraria.UI.Chat;
 
 namespace BetterExpertRarity.Content.Rarities
 {
-    public class ExpertRarityModifier : RarityModifier
+    [Autoload(false)]
+    public class TestRarity : DrawableModRarity
     {
+        // [...]
+
+        [Autoload(false)]
+        private class TestRarityGlobalItem : GlobalItem
+        {
+            public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+                => ItemID.TerraBlade == entity.type;
+
+            public override void SetDefaults(Item entity)
+            {
+                entity.rare = ModContent.RarityType<TestRarity>();
+            }
+        }
+
         // [public properties and fields]
 
         public Asset<Effect> Effect { get; private set; }
 
         // [public methods]
 
-        public override bool AppliesToRarity(int rarity)
-            => rarity == ItemRarityID.Expert;
-
-        public override void Load()
+        public override void Load(RarityModifier modifier)
         {
             Effect = ModContent.Request<Effect>("BetterExpertRarity/Assets/ExpertRarity", AssetRequestMode.ImmediateLoad);
             Effect.Value.Parameters["texture1"].SetValue(ModContent.Request<Texture2D>("BetterExpertRarity/Assets/Expert", AssetRequestMode.ImmediateLoad).Value);
         }
 
-        public override void Draw(DrawData data)
+        public override void Draw(RarityModifier.DrawData data)
         {
             var spriteBatch = Main.spriteBatch;
             var pulsation = Main.mouseTextColor / 255f * (data.ShadowSpread / 2f);
@@ -45,7 +57,7 @@ namespace BetterExpertRarity.Content.Rarities
             spriteBatch.End(out SpriteBatchData spriteBatchInfo);
             spriteBatch.Begin(spriteBatchInfo, SpriteSortMode.Immediate, Effect.Value);
 
-            var color = Colors.AlphaDarken(Color.White);
+            var color = Colors.AlphaDarken(Color.Red);
             color.A = 0;
 
             for (int i = 0; i < 5; i++)
