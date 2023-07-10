@@ -60,10 +60,7 @@ namespace BetterExpertRarity.Common.Rarities
                     if (!RarityModifierSystem.TryGetModifier(rarity, out RarityModifier modifier))
                         return true;
 
-                    if (modifier is null)
-                        return true;
-
-                    var data = new RarityModifier.DrawData
+                    modifier.Draw(new RarityModifier.DrawData
                     {
                         Text = cursorText,
                         Position = new Vector2(x, y),
@@ -73,9 +70,7 @@ namespace BetterExpertRarity.Common.Rarities
                         Scale = Vector2.One,
                         MaxWidth = -1f,
                         ShadowSpread = 2f
-                    };
-
-                    modifier.Draw(data);
+                    });
 
                     return false;
                 });
@@ -90,7 +85,8 @@ namespace BetterExpertRarity.Common.Rarities
             {
                 var index = orig(context, newItem, stack, noStack, longText);
 
-                if (index < 0) return index;
+                if (index < 0)
+                    return index;
 
                 if (Main.popupText[index].expert)
                     Main.popupText[index].rarity = ItemRarityID.Expert;
@@ -137,11 +133,9 @@ namespace BetterExpertRarity.Common.Rarities
                     var num10 = popupText.position.Y - Main.screenPosition.Y;
 
                     if (Main.LocalPlayer.gravDir == -1.0)
-                    {
                         num10 = Main.screenHeight - num10;
-                    }
 
-                    var data = new RarityModifier.DrawData
+                    modifier.Draw(new RarityModifier.DrawData
                     {
                         Text = text,
                         Position = vector2_2 + new Vector2(popupText.position.X - Main.screenPosition.X, num10),
@@ -151,9 +145,7 @@ namespace BetterExpertRarity.Common.Rarities
                         Scale = Vector2.One * popupText.scale,
                         MaxWidth = -1f,
                         ShadowSpread = scaleTarget * 2f
-                    };
-
-                    modifier.Draw(data);
+                    });
 
                     return false;
                 });
@@ -197,10 +189,7 @@ namespace BetterExpertRarity.Common.Rarities
             if (!RarityModifierSystem.TryGetModifier(item.rare, out RarityModifier modifier))
                 return true;
 
-            if (modifier is null)
-                return true;
-
-            var data = new RarityModifier.DrawData
+            modifier.Draw(new RarityModifier.DrawData
             {
                 Text = line.Text,
                 Position = new Vector2(line.X, line.Y),
@@ -210,9 +199,7 @@ namespace BetterExpertRarity.Common.Rarities
                 Scale = line.BaseScale,
                 MaxWidth = line.MaxWidth,
                 ShadowSpread = line.Spread
-            };
-
-            modifier.Draw(data);
+            });
 
             return false;
         }
