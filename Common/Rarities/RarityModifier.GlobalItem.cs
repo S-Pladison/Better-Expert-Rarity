@@ -60,11 +60,15 @@ namespace BetterExpertRarity.Common.Rarities
 
                 c.Emit(Mono.Cecil.Cil.OpCodes.Ldloc, 0);
                 c.Emit(Mono.Cecil.Cil.OpCodes.Ldloc, 1);
+                c.Emit(Mono.Cecil.Cil.OpCodes.Ldloc, 2);
                 c.Emit(Mono.Cecil.Cil.OpCodes.Ldloc, xIndex);
                 c.Emit(Mono.Cecil.Cil.OpCodes.Ldloc, yIndex);
 
-                c.EmitDelegate((string cursorText, int rarity, int x, int y) =>
+                c.EmitDelegate((string cursorText, int rarity, int diff, int x, int y) =>
                 {
+                    if (diff > 0)
+                        return true;
+
                     if (!RarityModifierSystem.TryGetModifier(rarity, out RarityModifier modifier))
                         return true;
 
