@@ -44,9 +44,17 @@ namespace BetterExpertRarity.Common.Rarities
                     i => i.MatchLdloc(0),
                     i => i.MatchLdloc(out xIndex),
                     i => i.MatchConvR4(),
-                    i => i.MatchLdloc(out yIndex))) return;
+                    i => i.MatchLdloc(out yIndex),
+                    i => i.MatchConvR4(),
+                    i => i.MatchNewobj(out _),
+                    i => i.MatchLdloc(out _))) return;
 
-                c.Index += 1;
+                if (!c.TryGotoPrev(MoveType.After,
+                    i => i.MatchLdsfld(typeof(Main).GetField("mouseTextColor")),
+                    i => i.MatchConvR4(),
+                    i => i.MatchLdcR4(255),
+                    i => i.MatchDiv(),
+                    i => i.MatchStloc(out _))) return;
 
                 var label = c.DefineLabel();
 
@@ -76,7 +84,6 @@ namespace BetterExpertRarity.Common.Rarities
                 });
 
                 c.Emit(Mono.Cecil.Cil.OpCodes.Brtrue, label);
-                c.Emit(Mono.Cecil.Cil.OpCodes.Pop);
                 c.Emit(Mono.Cecil.Cil.OpCodes.Ret);
                 c.MarkLabel(label);
             };
