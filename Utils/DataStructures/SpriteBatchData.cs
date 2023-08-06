@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Reflection;
 
 namespace BetterExpertRarity.Utils.DataStructures
 {
@@ -9,13 +8,13 @@ namespace BetterExpertRarity.Utils.DataStructures
     {
         // [static fields]
 
-        private static readonly FieldInfo sortModeFieldInfo;
-        private static readonly FieldInfo blendStateFieldInfo;
-        private static readonly FieldInfo samplerStateFieldInfo;
-        private static readonly FieldInfo depthStencilStateFieldInfo;
-        private static readonly FieldInfo rasterizerStateFieldInfo;
-        private static readonly FieldInfo effectFieldInfo;
-        private static readonly FieldInfo matrixFieldInfo;
+        private static readonly Func<SpriteBatch, SpriteSortMode> sortModeFieldAccessor;
+        private static readonly Func<SpriteBatch, BlendState> blendStateFieldAccessor;
+        private static readonly Func<SpriteBatch, SamplerState> samplerStateFieldAccessor;
+        private static readonly Func<SpriteBatch, DepthStencilState> depthStencilStateFieldAccessor;
+        private static readonly Func<SpriteBatch, RasterizerState> rasterizerStateFieldAccessor;
+        private static readonly Func<SpriteBatch, Effect> effectFieldAccessor;
+        private static readonly Func<SpriteBatch, Matrix> matrixFieldAccessor;
 
         // [fields]
 
@@ -31,30 +30,27 @@ namespace BetterExpertRarity.Utils.DataStructures
 
         static SpriteBatchData()
         {
-            var type = typeof(SpriteBatch);
-            var flags = BindingFlags.NonPublic | BindingFlags.Instance;
-
-            sortModeFieldInfo = type.GetField("sortMode", flags);
-            blendStateFieldInfo = type.GetField("blendState", flags);
-            samplerStateFieldInfo = type.GetField("samplerState", flags);
-            depthStencilStateFieldInfo = type.GetField("depthStencilState", flags);
-            rasterizerStateFieldInfo = type.GetField("rasterizerState", flags);
-            effectFieldInfo = type.GetField("customEffect", flags);
-            matrixFieldInfo = type.GetField("transformMatrix", flags);
+            sortModeFieldAccessor = TypeUtils.GetFieldAccessor<SpriteBatch, SpriteSortMode>("sortMode");
+            blendStateFieldAccessor = TypeUtils.GetFieldAccessor<SpriteBatch, BlendState>("blendState");
+            samplerStateFieldAccessor = TypeUtils.GetFieldAccessor<SpriteBatch, SamplerState>("samplerState");
+            depthStencilStateFieldAccessor = TypeUtils.GetFieldAccessor<SpriteBatch, DepthStencilState>("depthStencilState");
+            rasterizerStateFieldAccessor = TypeUtils.GetFieldAccessor<SpriteBatch, RasterizerState>("rasterizerState");
+            effectFieldAccessor = TypeUtils.GetFieldAccessor<SpriteBatch, Effect>("customEffect");
+            matrixFieldAccessor = TypeUtils.GetFieldAccessor<SpriteBatch, Matrix>("transformMatrix");
         }
 
         public SpriteBatchData(SpriteBatch spriteBatch)
         {
-            if (spriteBatch == null)
+            if (spriteBatch is null)
                 throw new ArgumentNullException(nameof(spriteBatch));
 
-            SortMode = (SpriteSortMode)sortModeFieldInfo.GetValue(spriteBatch);
-            BlendState = (BlendState)blendStateFieldInfo.GetValue(spriteBatch);
-            SamplerState = (SamplerState)samplerStateFieldInfo.GetValue(spriteBatch);
-            DepthStencilState = (DepthStencilState)depthStencilStateFieldInfo.GetValue(spriteBatch);
-            RasterizerState = (RasterizerState)rasterizerStateFieldInfo.GetValue(spriteBatch);
-            Effect = (Effect)effectFieldInfo.GetValue(spriteBatch);
-            Matrix = (Matrix)matrixFieldInfo.GetValue(spriteBatch);
+            SortMode = sortModeFieldAccessor(spriteBatch);
+            BlendState = blendStateFieldAccessor(spriteBatch);
+            SamplerState = samplerStateFieldAccessor(spriteBatch);
+            DepthStencilState = depthStencilStateFieldAccessor(spriteBatch);
+            RasterizerState = rasterizerStateFieldAccessor(spriteBatch);
+            Effect = effectFieldAccessor(spriteBatch);
+            Matrix = matrixFieldAccessor(spriteBatch);
         }
     }
 }

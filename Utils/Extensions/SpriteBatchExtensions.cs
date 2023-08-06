@@ -1,26 +1,11 @@
 ﻿using BetterExpertRarity.Utils.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
-using System.Reflection;
 
 namespace BetterExpertRarity.Utils.Extensions
 {
     public static class SpriteBatchExtensions
     {
-        // [static fields]
-
-        private static readonly FieldInfo beginCalledFieldInfo;
-
-        // [constructors]
-
-        static SpriteBatchExtensions()
-        {
-            beginCalledFieldInfo = typeof(SpriteBatch).GetField("beginCalled", BindingFlags.NonPublic | BindingFlags.Instance);
-        }
-
         // [public static methods]
-
-        public static bool CheckBeginWasCalled(this SpriteBatch spriteBatch)
-            => (bool)beginCalledFieldInfo.GetValue(spriteBatch);
 
         public static void Begin(this SpriteBatch spriteBatch, SpriteBatchData spriteBatchData)
             => spriteBatch.Begin
