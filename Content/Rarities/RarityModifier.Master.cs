@@ -40,11 +40,10 @@ namespace BetterExpertRarity.Content.Rarities
 
             ChatManager.DrawColorCodedStringShadow(spriteBatch, FontAssets.MouseText.Value, data.Text.ToSnippets(), data.Position, Colors.AlphaDarken(Color.Black), data.Rotation, data.Origin, data.Scale, data.MaxWidth, data.ShadowSpread);
 
-            spriteBatch.End(out SpriteBatchData spriteBatchInfo);
-            spriteBatch.Begin(spriteBatchInfo, SpriteSortMode.Immediate, Effect.Value);
+            spriteBatch.End(out SpriteBatchData spriteBatchData);
+            spriteBatch.Begin(spriteBatchData with { Effect = Effect.Value });
 
-            var color = Colors.AlphaDarken(Color.White);
-            color.A = 0;
+            var color = Colors.AlphaDarken(Color.White) with { A = 0 };
 
             for (int i = 0; i < 5; i++)
             {
@@ -71,7 +70,7 @@ namespace BetterExpertRarity.Content.Rarities
             }
 
             spriteBatch.End();
-            spriteBatch.Begin(spriteBatchInfo);
+            spriteBatch.Begin(spriteBatchData);
         }
     }
 }
