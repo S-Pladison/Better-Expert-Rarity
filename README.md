@@ -1,5 +1,5 @@
 # Better Expert Rarity
-A lightweight, no-frills Terraria mod for v1.4+ tModLoader that simply updates the visual of «Expert Mode» and «Master Mode» item rarities. It replaces the plain, static single-color text with an animated, shader-based gradient.
+A lightweight, no-frills mod for Terraria v1.4+ using tModLoader that simply updates the visual of «Expert Mode» and «Master Mode» item rarities. It replaces the plain, static single-color text with an animated, shader-based gradient.
 
 ## Preview
 ![dotnet_KkTwxPrfaU](https://github.com/S-Pladison/Better-Expert-Rarity/assets/36926642/177a7500-8748-4357-b319-029610dbeb08)
